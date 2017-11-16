@@ -1,5 +1,7 @@
-SYMBOLS = '123456789'
-EMPTY = '0'
+from square import Square
+from square import SYMBOLS
+from square import EMPTY
+
 
 ROWS = '123456789'
 COLS = 'ABCDEFGHI'
@@ -15,9 +17,9 @@ UNIT_LIST = ([cross(ROWS, column) for column in COLS] +
             [cross(rowSection, columnSection) for rowSection in ('ABC','DEF','GHI') for columnSection in ('123','456','789')])
 
 UNITS = dict((s, [u for u in UNIT_LIST if s in u])
-             for s in squares)
-PEERS = dict((s, set(sum(units[s],[]))-set([s]))
-             for s in squares)
+             for s in SQUARE_CODES)
+PEERS = dict((s, set(sum(UNITS[s],[]))-set([s]))
+             for s in SQUARE_CODES)
 
 # End of copied code from https://github.com/norvig/pytudes/blob/master/py/sudoku.py
 
@@ -38,10 +40,11 @@ class Board:
 
     def getEmptySquares(self):
         # Return array of empty squares or False if any
-        return for square in self.squares.values() if square.isEmpty()
+        return [square for square in self.squares.values() if square.isEmpty()]
 
     def isSolved(self):
         # TODO: Return if board is solved
+        return True
 
     @staticmethod
     def fromString(string):

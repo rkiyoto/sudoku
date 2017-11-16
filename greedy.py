@@ -6,12 +6,17 @@ class Greedy(SudokuStrategy):
         SudokuStrategy.solve(board)
         square = _greedyNextSquare(board)
 
-        return True if not square
+        if not square:
+            return True
 
         for symbol in SYMBOLS:
             board.assignSquare(square, symbol)
-            return True if board.isSolved()
-            return True if greedy(board)
+            if board.isSolved():
+                return True
+
+            if greedy(board):
+                return True
+
             board.emptySquare(square)
 
         return False
@@ -19,10 +24,12 @@ class Greedy(SudokuStrategy):
     @staticmethod
     def _greedyNextSquare(board):
         empties = board.getEmptySquares()
-        return True if not empties
+        if not empties:
+            return True
 
         easiest = empties[0]
-        for square in empties
-            easiest = square if len(square.getPossibilies()) < len(easiest.getPossibilies())
+        for square in empties:
+            if len(square.getPossibilies()) < len(easiest.getPossibilies()):
+                easiest = square
 
         return easiest

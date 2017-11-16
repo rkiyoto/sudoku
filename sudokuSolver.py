@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-from board import SYMBOLS
-from board import Board
 import sys
+
+from board import Board
 
 from depthFirst import DepthFirst
 from greedy import Greedy
@@ -11,7 +11,8 @@ strategies = [SudokuStrategy]
 
 # Parse CLI options
 if len(sys.argv) == 1 :
-    print("To run " + sys.arv[0] + " pass a file name where each line is a sudoku game with 81 characters per line and optionally an output file name")
+    print("To run " + sys.argv[0] + " pass a file name where each line is a sudoku game with 81 characters per line and optionally an output file name")
+    sys.exit()
 
 inputFile = open(sys.argv[1])
 
@@ -26,4 +27,5 @@ for line in inputFile:
         strategy.solve(board)
 
 inputFile.close()
-outputFile.close() if outputFile
+if 'outputFile' in locals():
+    outputFile.close()

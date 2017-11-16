@@ -1,5 +1,5 @@
-from board import EMPTY
-from board import SYMBOLS
+SYMBOLS = '123456789'
+EMPTY = '0'
 
 class Square:
     def __init__(self, code, units, peers):
@@ -10,7 +10,7 @@ class Square:
 
         # Sudoku value info
         self.value = EMPTY
-        self.possibilities = SYMBOLS.remove(symbol)
+        self.possibilities = SYMBOLS
 
     def getPossibilies(self):
         return self.possibilities
@@ -22,7 +22,7 @@ class Square:
         return self.peers
 
     def getValue(self):
-        return sefl.value
+        return self.value
 
     def setValue(self, value):
         self.value = value

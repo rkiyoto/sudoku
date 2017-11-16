@@ -6,12 +6,17 @@ class DepthFirst(SudokuStrategy):
         SudokuStrategy.solve(board)
         square = _depthFirstNextSquare(board)
 
-        return True if not square
+        if not square:
+            return True
 
         for symbol in SYMBOLS:
             board.assignSquare(square, symbol)
-            return True if board.isSolved()
-            return True if depthFirst(board)
+            
+            if board.isSolved():
+                return True
+            if depthFirst(board):
+                return True
+
             board.emptySquare(square)
 
         return False
@@ -19,6 +24,7 @@ class DepthFirst(SudokuStrategy):
     @staticmethod
     def _depthFirstNextSquare(board):
         for square in board.getSquares():
-            return square if square.empty()
+            if square.empty():
+                return square
 
         return False
