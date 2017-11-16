@@ -34,4 +34,5 @@ class Greedy(SudokuStrategy):
             if len(square.getPossibilies()) < len(easiest.getPossibilies()):
                 easiest = square
 
+        # print(easiest.getPossibilies())
         return easiest

@@ -12,6 +12,15 @@ class Square:
         self.value = EMPTY
         self.possibilities = SYMBOLS
 
+    def removePossibility(self, symbol):
+        try:
+            self.possibilities = self.possibilities.remove(symbol)
+        except:
+            pass
+
+    def setPossibilities(self, possibilities):
+        self.possibilities = possibilities
+
     def getPossibilies(self):
         return self.possibilities
 

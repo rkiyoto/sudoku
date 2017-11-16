@@ -33,7 +33,18 @@ class Board:
 
     def assignSquare(self, square, symbol):
         square.setValue(symbol)
-        print(self)
+        for peerCode in square.getPeers():
+            peer = self.squares[peerCode]
+            if symbol == EMPTY:
+                # put old value on all peers possibilities
+                setOfValues = set([self.squares[peerOfpeerCode].value for peerOfpeerCode in peer.getPeers()])
+                values = ''.join(setOfValues).replace(EMPTY, '')
+                peer.setPossibilities(str(values))
+            else:
+                # remove new value from all peers possibilities
+                peer.removePossibility(symbol)
+
+        # print(self)
 
     def emptySquare(self, square):
         self.assignSquare(square, EMPTY)
