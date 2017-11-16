@@ -56,9 +56,9 @@ class Board:
         return board
 
     def __str__(self):
-        # TODO: Improve board to string
         toString = ""
-        for square in self.squares.values():
-            toString += square.getValue()
+        for y in ROWS:
+            for x in COLS:
+                toString += str(self.squares[y+x])
 
         return toString

@@ -29,3 +29,6 @@ class Square:
 
     def isEmpty(self):
         return self.value == EMPTY
+
+    def __str__(self):
+        return str(self.value)
