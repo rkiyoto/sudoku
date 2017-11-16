@@ -5,7 +5,6 @@ from board import Board
 
 from depthFirst import DepthFirst
 from greedy import Greedy
-from sudokuStrategy import SudokuStrategy
 
 strategies = [Greedy]
 

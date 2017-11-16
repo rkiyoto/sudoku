@@ -53,8 +53,9 @@ class Board:
 
     def isValid(self):
         def unitvalid(unit):
-            unitvalues = filter((EMPTY).__ne__, [str(self.squares[s]) for s in unit])
-
+            unitvalues = [str(self.squares[s]) for s in unit]
+            unitvalues = [value for value in unitvalues if value != EMPTY]
+            
             # print(len(unitvalues) == len(set(unitvalues)), unitvalues, set(unitvalues))
             return len(unitvalues) == len(set(unitvalues))
         return all(unitvalid(unit) for unit in UNIT_LIST)
