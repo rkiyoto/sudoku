@@ -11,7 +11,7 @@ strategies = [SudokuStrategy]
 
 # Parse CLI options
 if len(sys.argv) == 1 :
-    print("To run " + sys.argv[0] + " pass a file name where each line is a sudoku game with 81 characters per line and optionally an output file name")
+    print("To run " + sys.argv[0] + " pass a file name(puzzles.txt) where each line is a sudoku game with 81 characters per line and optionally an output file name")
     sys.exit()
 
 inputFile = open(sys.argv[1])
