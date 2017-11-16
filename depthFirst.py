@@ -10,13 +10,14 @@ class DepthFirst(SudokuStrategy):
         if not square:
             return True
 
-        for symbol in SYMBOLS:
+        for i, symbol in enumerate(SYMBOLS):
             board.assignSquare(square, symbol)
 
             if board.isSolved():
                 return True
-            if depthFirst(board):
-                return True
+            if board.isValid():
+                if DepthFirst.solve(board):
+                    return True
 
             board.emptySquare(square)
 

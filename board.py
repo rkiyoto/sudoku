@@ -14,7 +14,7 @@ def cross(A, B):
 SQUARE_CODES  = cross(ROWS, COLS)
 UNIT_LIST = ([cross(ROWS, column) for column in COLS] +
             [cross(row, COLS) for row in ROWS] +
-            [cross(rowSection, columnSection) for rowSection in ('ABC','DEF','GHI') for columnSection in ('123','456','789')])
+            [cross(rowSection, columnSection) for rowSection in ('123','456','789') for columnSection in ('ABC','DEF','GHI')])
 
 UNITS = dict((s, [u for u in UNIT_LIST if s in u])
              for s in SQUARE_CODES)
@@ -42,9 +42,18 @@ class Board:
         # Return array of empty squares or False if any
         return [square for square in self.squares.values() if square.isEmpty()]
 
+    def isValid(self):
+        def unitvalid(unit):
+            unitvalues = filter((EMPTY).__ne__, [str(self.squares[s]) for s in unit])
+
+            # print(len(unitvalues) == len(set(unitvalues)), unitvalues, set(unitvalues))
+            return len(unitvalues) == len(set(unitvalues))
+        return all(unitvalid(unit) for unit in UNIT_LIST)
+
     def isSolved(self):
-        # TODO: Return if board is solved
-        return True
+        "A puzzle is solved if each unit is a permutation of the digits 1 to 9."
+        def unitsolved(unit): return set(str(self.squares[s]) for s in unit) == set(SYMBOLS)
+        return self.squares is not False and all(unitsolved(unit) for unit in UNIT_LIST)
 
     @staticmethod
     def fromString(string):
@@ -56,9 +65,14 @@ class Board:
         return board
 
     def __str__(self):
-        toString = ""
-        for y in ROWS:
-            for x in COLS:
-                toString += str(self.squares[y+x])
+        toString = "-"*37+"\n"
+        for i, row in enumerate(ROWS):
+            toString += ("|" + " {}   {}   {} |"*3).format(*[str(self.squares[row+col]) for col in COLS])+"\n"
+            if i == 8:
+                toString += "-"*37
+            elif i % 3 == 2:
+                toString += "|" + "---+"*8 + "---|\n"
+            else:
+                toString += "|" + "   +"*8 + "   |\n"
 
         return toString

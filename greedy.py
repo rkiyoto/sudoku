@@ -15,8 +15,9 @@ class Greedy(SudokuStrategy):
             if board.isSolved():
                 return True
 
-            if greedy(board):
-                return True
+            if board.isValid():
+                if Greedy.solve(board):
+                    return True
 
             board.emptySquare(square)
 
@@ -26,7 +27,7 @@ class Greedy(SudokuStrategy):
     def _greedyNextSquare(board):
         empties = board.getEmptySquares()
         if not empties:
-            return True
+            return False
 
         easiest = empties[0]
         for square in empties:
