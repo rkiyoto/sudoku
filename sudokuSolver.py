@@ -24,8 +24,8 @@ if len(sys.argv) >= 3:
 for line in inputFile:
     for strategy in strategies:
         print("Solving sudoku board using " + strategy.__name__ + " strategy:")
-        print("")
         board = Board.fromString(line)
+        print(board)
         strategy.solve(board)
         print(board)
 

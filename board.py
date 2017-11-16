@@ -35,14 +35,12 @@ class Board:
         square.setValue(symbol)
         for peerCode in square.getPeers():
             peer = self.squares[peerCode]
-            if symbol == EMPTY:
-                # put old value on all peers possibilities
-                setOfValues = set([self.squares[peerOfpeerCode].value for peerOfpeerCode in peer.getPeers()])
-                values = ''.join(setOfValues).replace(EMPTY, '')
-                peer.setPossibilities(str(values))
-            else:
-                # remove new value from all peers possibilities
-                peer.removePossibility(symbol)
+            setOfValues = set([self.squares[peerOfpeerCode].value for peerOfpeerCode in peer.getPeers()])
+            if symbol != EMPTY:
+                setOfValues.add(symbol)
+            setOfValues = set(SYMBOLS) - setOfValues
+            values = ''.join(setOfValues).replace(EMPTY, '')
+            peer.setPossibilities(str(values))
 
         # print(self)
 
@@ -71,7 +69,7 @@ class Board:
         board = Board()
 
         for i, code in enumerate(SQUARE_CODES):
-            board.squares[code].setValue(string[i])
+            board.assignSquare(board.squares[code], string[i])
 
         return board
 
