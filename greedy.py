@@ -1,10 +1,11 @@
 from sudokuStrategy import SudokuStrategy
+from square import SYMBOLS
 
 class Greedy(SudokuStrategy):
     @staticmethod
     def solve(board):
         SudokuStrategy.solve(board)
-        square = _greedyNextSquare(board)
+        square = Greedy._greedyNextSquare(board)
 
         if not square:
             return True

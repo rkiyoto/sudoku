@@ -7,7 +7,7 @@ from depthFirst import DepthFirst
 from greedy import Greedy
 from sudokuStrategy import SudokuStrategy
 
-strategies = [SudokuStrategy]
+strategies = [DepthFirst, Greedy]
 
 # Parse CLI options
 if len(sys.argv) == 1 :
@@ -23,8 +23,11 @@ if len(sys.argv) >= 3:
 # Solve every sudoku setup on inputFile
 for line in inputFile:
     for strategy in strategies:
+        print("Solving sudoku board using " + strategy.__name__ + " strategy:")
+        print("")
         board = Board.fromString(line)
         strategy.solve(board)
+        print("")
 
 inputFile.close()
 if 'outputFile' in locals():
