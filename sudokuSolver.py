@@ -7,7 +7,7 @@ from depthFirst import DepthFirst
 from greedy import Greedy
 from sudokuStrategy import SudokuStrategy
 
-strategies = [DepthFirst, Greedy]
+strategies = [Greedy]
 
 # Parse CLI options
 if len(sys.argv) == 1 :

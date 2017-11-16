@@ -74,14 +74,19 @@ class Board:
         return board
 
     def __str__(self):
-        toString = "-"*37+"\n"
-        for i, row in enumerate(ROWS):
-            toString += ("|" + " {}   {}   {} |"*3).format(*[str(self.squares[row+col]) for col in COLS])+"\n"
-            if i == 8:
-                toString += "-"*37
-            elif i % 3 == 2:
-                toString += "|" + "---+"*8 + "---|\n"
-            else:
-                toString += "|" + "   +"*8 + "   |\n"
+        toString = ""
+        for col in COLS:
+            for row in ROWS:
+                toString += str(self.squares[row+col])
+
+        # toString = "-"*37+"\n"
+        # for i, row in enumerate(ROWS):
+        #     toString += ("|" + " {}   {}   {} |"*3).format(*[str(self.squares[row+col]) for col in COLS])+"\n"
+        #     if i == 8:
+        #         toString += "-"*37
+        #     elif i % 3 == 2:
+        #         toString += "|" + "---+"*8 + "---|\n"
+        #     else:
+        #         toString += "|" + "   +"*8 + "   |\n"
 
         return toString

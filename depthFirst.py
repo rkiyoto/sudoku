@@ -6,6 +6,7 @@ class DepthFirst(SudokuStrategy):
     def solve(board):
         SudokuStrategy.solve(board)
         square = DepthFirst._depthFirstNextSquare(board)
+        print(square.code)
 
         if not square:
             return True
