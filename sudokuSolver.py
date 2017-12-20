@@ -6,7 +6,7 @@ from board import Board
 from depthFirst import DepthFirst
 from greedy import Greedy
 
-strategies = [Greedy]
+strategies = [DepthFirst, Greedy]
 
 # Parse CLI options
 if len(sys.argv) == 1 :
